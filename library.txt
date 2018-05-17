@@ -1,0 +1,35 @@
+hello_fn.c:
+#include <stdio.h>
+#include "hello.h"
+void hello(const char* name) {
+    printf("Hello %s!\n", name);
+}
+
+bye_fn.c:
+#include <stdio.h>
+#include "hello.h"
+void bye() {
+    printf("Goodbye!\n");
+}
+
+hello.h:
+void hello(const char * name);
+void bye(void);
+
+test.c:
+#include <stdio.h>
+#include "hello.h"
+int main (void)
+{
+    hello("everyone");
+    bye();
+    return 0;
+}
+
+
+gcc -Wall -c hello_fn.c
+gcc -Wall -c bye_fn.c
+ar cr libhello.a hello_fn.o bye_fn.o
+ar t libhello.a
+gcc -Wall main.c libhello.a -o hello
+./hello

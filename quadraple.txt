@@ -1,0 +1,38 @@
+import java.util.*;
+import java.io.*;
+public class P {
+
+    static int count=1;
+    static void posttwo(Stack stack,char ch)
+    {
+        String op1=(stack.pop()).toString();
+        String op2=(stack.pop()).toString();
+        char op=ch;
+        System.out.println(op+"\t"+op2+"\t"+op1+"\t"+"t"+count);
+        String temp = "t"+count;
+        stack.push(temp);
+        count++;
+    }
+    public static void main(String args[])
+    {
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter the postfix expression");
+        String input= sc.nextLine();
+        Stack stack= new Stack();
+
+        System.out.println("\n"+"op"+"\t"+"op1"+"\t"+"op2"+"\t"+"t");
+        int i;
+        for (i=0;i<input.length();i++)
+        {
+            char ch=input.charAt(i);
+            if(ch=='+'||ch=='/'||ch=='*'||ch=='-'||ch=='^')
+            {
+                posttwo(stack,ch);
+            }
+            else
+            {
+                stack.push(ch+"");
+            }
+        }
+    }
+}

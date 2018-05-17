@@ -1,0 +1,73 @@
+lexi.l
+
+%{
+
+
+%}
+%%
+[\t ]+
+
+main |
+if |
+else |
+switch |
+for |
+do |
+while |
+double |
+int |
+void |
+float |
+return |
+char			  		{printf("%s: reserved\n",yytext);}
+
+is |
+then |				{printf("%s: reserved\n",yytext);}				
+and |
+but |
+or |
+
+[; | ,]			  		{printf("%s: punctuation\n",yytext);}
+
+[{ | (]			  		{printf("%s: left parenthesis\n",yytext);}
+
+
+
+[} | )]			  		{printf("%s: right parenthesis\n",yytext);}
+
+['+' | '-' | '*' | '/' | '=']    	{printf("%s: operators\n",yytext);}
+
+[0-9]+			  		{printf("%s: numbers\n",yytext);}
+
+[_a-zA-Z][_a-zA-Z0-9]*    		{printf("%s: identifier\n",yytext);}
+
+%%
+
+
+int main(){
+yylex();
+}
+lec.c
+
+
+
+#include<stdio.h>
+ 
+int main()
+{
+   int a, b, c;
+ 
+   printf("Enter two numbers to add\n");
+   scanf("%d%d", &a, &b);
+ 
+   c = a + b;
+ 
+   printf("Sum of the numbers = %d\n", c);
+ 
+   return 0;
+}
+
+
+ lex lexi.l
+ gcc lex.yy.c -lfl
+ ./a.out <lec.c
